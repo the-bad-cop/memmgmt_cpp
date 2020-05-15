@@ -18,6 +18,27 @@ public:
         std::cout << "Deleting INSTANCE at: " << this << std::endl;
         delete[] _value;
     }
+    MyClass(MyClass &&source)
+    {
+        std::cout << "MOVING instance: " << &source << " to instance: " << this << std::endl;
+        _value = source._value;
+        _size = source._size;
+        source._size = 0;
+        source._value = nullptr;
+    }
+    MyClass &operator=(MyClass &&source)
+    {
+        std::cout << "MOVING instance: " << &source << " to instance: " << this << std::endl;
+        if (this == &source)
+        {
+            return *this;
+        }
+        _size = source._size;
+        _value = source._value;
+        source._value = nullptr;
+        source._size = 0;
+        return *this;
+    }
     MyClass(const MyClass &source)
     {
         _size = source._size;
