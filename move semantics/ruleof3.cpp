@@ -30,7 +30,7 @@ public:
         std::cout << "Assigning content of INSTANCE: " << &source << " to instance: " << this << std::endl;
         if (this == &source)
         {
-            return *this;
+            return *this; //self assignment pot-boiler code
         }
         delete[] _value;
         _size = source._size;
@@ -45,5 +45,5 @@ int main()
     MyClass obj2(obj1);
     MyClass obj3 = obj2;
     obj3 = obj1;
-    obj3 = obj2;
+    obj3 = obj3; //self assignment
 }
