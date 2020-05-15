@@ -45,4 +45,5 @@ int main()
     MyClass obj2(obj1);
     MyClass obj3 = obj2;
     obj3 = obj1;
+    obj3 = obj2;
 }
