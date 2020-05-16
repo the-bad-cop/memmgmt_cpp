@@ -20,7 +20,7 @@ public:
     }
     MyClass(MyClass &&source)
     {
-        std::cout << "MOVING instance: " << &source << " to instance: " << this << std::endl;
+        std::cout << "MOVING instance(cons~t): " << &source << " to instance: " << this << std::endl;
         _value = source._value;
         _size = source._size;
         source._size = 0;
@@ -28,7 +28,7 @@ public:
     }
     MyClass &operator=(MyClass &&source)
     {
-        std::cout << "MOVING instance: " << &source << " to instance: " << this << std::endl;
+        std::cout << "MOVING instance(asignOPera): " << &source << " to instance: " << this << std::endl;
         if (this == &source)
         {
             return *this;
@@ -62,9 +62,14 @@ public:
 };
 int main()
 {
-    MyClass obj1(99);
-    MyClass obj2(obj1);
-    MyClass obj3 = obj2;
-    obj3 = obj1;
-    obj3 = obj3; //self assignment
+    /*
+    MyClass obj1(10), obj2(20);
+    MyClass obj3(obj1);
+    MyClass obj4 = obj1;
+    obj4 = obj2;
+    */
+    // MyClass obj1(10);
+    // obj1 = MyClass(20);
+    MyClass obj2 = std::move(MyClass(30));
+    // MyClass obj3(std::move(obj1));
 }
